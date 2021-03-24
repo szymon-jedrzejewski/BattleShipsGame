@@ -1,6 +1,9 @@
+import java.util.List;
+
 public class Board {
     private int width;
     private int height;
+    private List<Coordinate> coords;
 
     public int getWidth() {
         return width;

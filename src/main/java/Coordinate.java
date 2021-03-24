@@ -1,9 +1,9 @@
-public class Coordinates {
+public class Coordinate {
 
     private String x;
     private String y;
 
-    public Coordinates(String x, String y) {
+    public Coordinate(String x, String y) {
         this.x = x;
         this.y = y;
     }
