@@ -3,7 +3,8 @@ import java.util.List;
 public class Board {
     private int width;
     private int height;
-    private List<Coordinate> coords;
+    private List<Ship> playerOneShips;
+    private List<Ship> playerTwoShips;
 
     public int getWidth() {
         return width;
