@@ -1,3 +1,6 @@
+import java.util.List;
+
 public interface Player {
-    Coordinate shot();
+    Coordinate enterCoordinate();
+    List<Ship> getShips();
 }
