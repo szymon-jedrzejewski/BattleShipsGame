@@ -1,6 +1,9 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class ComputerPlayer implements Player{
+    List<Ship> ships = new ArrayList<>();
+
     @Override
     public Coordinate enterCoordinate() {
         return null;
@@ -8,6 +11,11 @@ public class ComputerPlayer implements Player{
 
     @Override
     public List<Ship> getShips() {
-        return null;
+        return ships;
+    }
+
+    @Override
+    public void createShip(Ship ship) {
+        ships.add(ship);
     }
 }
