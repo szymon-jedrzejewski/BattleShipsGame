@@ -1,9 +1,10 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Ship {
 
     private int shipSize;
-    private List<Coordinate> shipCoords;
+    private List<Coordinate> shipCoords = new ArrayList<>();
 
     public Ship(int shipSize) {
         this.shipSize = shipSize;
@@ -13,7 +14,7 @@ public class Ship {
         return shipSize;
     }
 
-    public List<Coordinate> getShip() {
+    public List<Coordinate> getShipCoords() {
         return shipCoords;
     }
 

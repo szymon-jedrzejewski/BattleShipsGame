@@ -24,6 +24,10 @@ public class Coordinate {
         this.y = y;
     }
 
+    public String getCoordinate() {
+        return x + y;
+    }
+
     @Override
     public String toString() {
         return "Coordinates{" +
