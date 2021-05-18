@@ -3,16 +3,16 @@ import java.util.List;
 
 public class Ship {
 
-    private int shipSize;
+    private ShipType shipType;
     private List<Coordinate> shipCoords = new ArrayList<>();
     private boolean isSunk = false;
 
-    public Ship(int shipSize) {
-        this.shipSize = shipSize;
+    public Ship(ShipType shipType) {
+        this.shipType = shipType;
     }
 
-    public int getShipSize() {
-        return shipSize;
+    public ShipType getShipType() {
+        return shipType;
     }
 
     public List<Coordinate> getShipCoords() {
@@ -20,7 +20,7 @@ public class Ship {
     }
 
     public boolean addCoordinate(Coordinate coordinate) {
-        if (shipCoords.size() < shipSize) {
+        if (shipCoords.size() < shipType.getShipSize()) {
             shipCoords.add(coordinate);
             return true;
         }
@@ -33,5 +33,9 @@ public class Ship {
 
     public void setSunk(boolean sunk) {
         isSunk = sunk;
+    }
+
+    public int getShipSize() {
+        return shipType.getShipSize();
     }
 }

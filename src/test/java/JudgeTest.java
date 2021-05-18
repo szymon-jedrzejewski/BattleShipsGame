@@ -8,7 +8,7 @@ public class JudgeTest {
 
     @Before
     public void setUp() {
-        ship = new Ship(4);
+        ship = new Ship(ShipType.DESTROYER);
         ship.addCoordinate(new Coordinate("A", "1"));
         ship.addCoordinate(new Coordinate("B", "1"));
         ship.addCoordinate(new Coordinate("C", "1"));
