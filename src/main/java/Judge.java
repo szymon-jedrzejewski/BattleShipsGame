@@ -6,9 +6,16 @@ public class Judge {
         List<Coordinate> coords = ship.getShipCoords();
         for (Coordinate coordinate : coords) {
             if (coordinate.getCoordinate().equals(playerShot.getCoordinate())) {
+
                 return true;
             }
         }
         return false;
+    }
+
+    public void subtractLife (Ship ship) {
+        final int LIFE_TAKEN_FOR_HIT = 1;
+        int lives = ship.getLives() - LIFE_TAKEN_FOR_HIT;
+        ship.updateLives(lives);
     }
 }

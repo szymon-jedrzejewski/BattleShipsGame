@@ -37,7 +37,11 @@ public class Ship {
         isSunk = sunk;
     }
 
-    public int getShipLives() {
+    public void updateLives(int lives) {
+        this.lives = lives;
+    }
+
+    public int getLives() {
         return lives;
     }
 }
