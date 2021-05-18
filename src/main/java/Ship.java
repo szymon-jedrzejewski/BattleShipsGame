@@ -5,6 +5,7 @@ public class Ship {
 
     private int shipSize;
     private List<Coordinate> shipCoords = new ArrayList<>();
+    private boolean isSunk = false;
 
     public Ship(int shipSize) {
         this.shipSize = shipSize;
@@ -24,5 +25,13 @@ public class Ship {
             return true;
         }
         return false;
+    }
+
+    public boolean isSunk() {
+        return isSunk;
+    }
+
+    public void setSunk(boolean sunk) {
+        isSunk = sunk;
     }
 }
