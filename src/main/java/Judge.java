@@ -20,10 +20,16 @@ public class Judge {
     }
 
     public boolean isShipSunk(Ship ship) {
-        if (ship.getLives() == 0) {
-            ship.setSunk(true);
-            return true;
+        return ship.getLives() == 0;
+    }
+
+    public boolean areAllShipsSunk(List<Ship> ships) {
+        int countSinkShips = 0;
+        for (Ship ship : ships) {
+            if (isShipSunk(ship)) {
+                countSinkShips++;
+            }
         }
-        return false;
+        return countSinkShips == ships.size();
     }
 }

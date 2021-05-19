@@ -6,7 +6,6 @@ public class Ship {
     private ShipType type;
     private List<Coordinate> shipCoords = new ArrayList<>();
     private int lives;
-    private boolean isSunk = false;
 
     public Ship(ShipType type) {
         this.type = type;
@@ -27,14 +26,6 @@ public class Ship {
             return true;
         }
         return false;
-    }
-
-    public boolean isSunk() {
-        return isSunk;
-    }
-
-    public void setSunk(boolean sunk) {
-        isSunk = sunk;
     }
 
     public void updateLives(int lives) {

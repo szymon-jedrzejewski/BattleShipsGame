@@ -8,44 +8,38 @@ import static org.junit.Assert.*;
 
 public class JudgeTest {
     private Ship ship;
-    private Player player;
+    private Judge judge;
 
     @Before
     public void setUp() {
+        judge = new Judge();
         ship = new Ship(ShipType.DESTROYER);
         ship.addCoordinate(new Coordinate("A", "1"));
         ship.addCoordinate(new Coordinate("B", "1"));
         ship.addCoordinate(new Coordinate("C", "1"));
         ship.addCoordinate(new Coordinate("D", "1"));
-        player = new Player();
-        createShipsForPlayer();
-
     }
 
     @Test
     public void shouldPassIfShipGotShot() {
-        Judge judge = new Judge();
         Coordinate coordinate = new Coordinate("A", "1");
         assertTrue(judge.wasShipHit(ship, coordinate));
     }
 
     @Test
     public void shouldPassIfShipDidNotGetShot() {
-        Judge judge = new Judge();
         Coordinate coordinate = new Coordinate("A", "2");
         assertFalse(judge.wasShipHit(ship, coordinate));
     }
 
     @Test
     public void shouldPassIfLifeWasSubtracted() {
-        Judge judge = new Judge();
         judge.subtractLife(ship);
         assertEquals(3, ship.getLives());
     }
 
     @Test
     public void shouldPassIfShipHasNoLives() {
-        Judge judge = new Judge();
         judge.subtractLife(ship);
         judge.subtractLife(ship);
         judge.subtractLife(ship);
@@ -55,7 +49,6 @@ public class JudgeTest {
 
     @Test
     public void shouldPassIfShipIsSunk() {
-        Judge judge = new Judge();
         judge.subtractLife(ship);
         judge.subtractLife(ship);
         judge.subtractLife(ship);
@@ -65,22 +58,33 @@ public class JudgeTest {
 
     @Test
     public void shouldPassIfShipIsNotSunk() {
-        Judge judge = new Judge();
         judge.subtractLife(ship);
         judge.subtractLife(ship);
         judge.subtractLife(ship);
         assertFalse(judge.isShipSunk(ship));
     }
 
-
-    private void sinkAllShips(List<Ship> ships) {
+    @Test
+    public void shouldPassIfAllShipsAreSunk() {
+        List<Ship> ships = sinkAllShips(createShips());
+        assertTrue(judge.areAllShipsSunk(ships));
+    }
+    
+    private List<Ship> sinkAllShips(List<Ship> ships) {
+        
         for (Ship ship : ships) {
-            ship.setSunk(true);
+            int lives = ship.getLives();
+            for (int i = 0; i < lives; i++) {
+                judge.subtractLife(ship);
+            }
         }
+        return ships;
     }
 
 
-    private void createShipsForPlayer() {
+    private List<Ship> createShips() {
+        List<Ship> ships = new ArrayList<>();
+
         Ship ship1 = new Ship(ShipType.DESTROYER);
         ship1.addCoordinate(new Coordinate("A", "1"));
         ship1.addCoordinate(new Coordinate("B", "1"));
@@ -100,8 +104,10 @@ public class JudgeTest {
         ship3.addCoordinate(new Coordinate("D", "3"));
         ship3.addCoordinate(new Coordinate("E", "3"));
 
-        player.addShip(ship1);
-        player.addShip(ship2);
-        player.addShip(ship3);
+        ships.add(ship1);
+        ships.add(ship2);
+        ships.add(ship3);
+
+        return ships;
     }
 }
