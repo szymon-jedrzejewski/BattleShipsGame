@@ -18,4 +18,12 @@ public class Judge {
         int lives = ship.getLives() - LIFE_TAKEN_FOR_HIT;
         ship.updateLives(lives);
     }
+
+    public boolean isShipSunk(Ship ship) {
+        if (ship.getLives() == 0) {
+            ship.setSunk(true);
+            return true;
+        }
+        return false;
+    }
 }

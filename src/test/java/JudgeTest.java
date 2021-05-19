@@ -23,24 +23,53 @@ public class JudgeTest {
     }
 
     @Test
-    public void shouldReturnTrueIfShipGotShot() {
+    public void shouldPassIfShipGotShot() {
         Judge judge = new Judge();
         Coordinate coordinate = new Coordinate("A", "1");
         assertTrue(judge.wasShipHit(ship, coordinate));
     }
 
     @Test
-    public void shouldReturnFalseIfShipDidNotGetShot() {
+    public void shouldPassIfShipDidNotGetShot() {
         Judge judge = new Judge();
         Coordinate coordinate = new Coordinate("A", "2");
         assertFalse(judge.wasShipHit(ship, coordinate));
     }
 
     @Test
-    public void shouldReturnTrueIfLifeWasSubtracted() {
+    public void shouldPassIfLifeWasSubtracted() {
         Judge judge = new Judge();
         judge.subtractLife(ship);
         assertEquals(3, ship.getLives());
+    }
+
+    @Test
+    public void shouldPassIfShipHasNoLives() {
+        Judge judge = new Judge();
+        judge.subtractLife(ship);
+        judge.subtractLife(ship);
+        judge.subtractLife(ship);
+        judge.subtractLife(ship);
+        assertEquals(0, ship.getLives());
+    }
+
+    @Test
+    public void shouldPassIfShipIsSunk() {
+        Judge judge = new Judge();
+        judge.subtractLife(ship);
+        judge.subtractLife(ship);
+        judge.subtractLife(ship);
+        judge.subtractLife(ship);
+        assertTrue(judge.isShipSunk(ship));
+    }
+
+    @Test
+    public void shouldPassIfShipIsNotSunk() {
+        Judge judge = new Judge();
+        judge.subtractLife(ship);
+        judge.subtractLife(ship);
+        judge.subtractLife(ship);
+        assertFalse(judge.isShipSunk(ship));
     }
 
 
