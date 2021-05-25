@@ -48,23 +48,6 @@ public class JudgeTest {
     }
 
     @Test
-    public void shouldPassIfShipIsSunk() {
-        judge.subtractLife(ship);
-        judge.subtractLife(ship);
-        judge.subtractLife(ship);
-        judge.subtractLife(ship);
-        assertTrue(judge.isShipSunk(ship));
-    }
-
-    @Test
-    public void shouldPassIfShipIsNotSunk() {
-        judge.subtractLife(ship);
-        judge.subtractLife(ship);
-        judge.subtractLife(ship);
-        assertFalse(judge.isShipSunk(ship));
-    }
-
-    @Test
     public void shouldPassIfAllShipsAreSunk() {
         List<Ship> ships = sinkAllShips(createShips());
         assertTrue(judge.areAllShipsSunk(ships));

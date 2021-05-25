@@ -19,7 +19,7 @@ public class Judge {
         ship.updateLives(lives);
     }
 
-    public boolean isShipSunk(Ship ship) {
+    private boolean isShipSunk(Ship ship) {
         return ship.getLives() == 0;
     }
 
