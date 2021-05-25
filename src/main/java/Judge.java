@@ -3,7 +3,7 @@ import java.util.List;
 public class Judge {
 
     public boolean wasShipHit(Ship ship, Coordinate playerShot) {
-        List<Coordinate> coords = ship.getShipCoords();
+        List<Coordinate> coords = ship.getCoords();
         for (Coordinate coordinate : coords) {
             if (coordinate.getCoordinate().equals(playerShot.getCoordinate())) {
 
