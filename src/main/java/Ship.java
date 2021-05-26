@@ -25,7 +25,7 @@ public class Ship {
     public boolean addCoordinate(Coordinate coordinate) {
         if (coords.size() < type.getShipSize()) {
             coords.add(coordinate);
-            return true;
+            return areCoordsCorrect(coords);
         }
         return false;
     }
@@ -67,7 +67,7 @@ public class Ship {
         int previousNumberInCoordinate = Integer.parseInt(coords.get(0).getY());
 
         for (int i = 1; i < coords.size(); i++) {
-            if (Integer.parseInt(coords.get(i).getY()) == previousNumberInCoordinate + 1) {
+            if (Integer.parseInt(coords.get(i).getY()) != previousNumberInCoordinate + 1) {
                 return false;
             }
             previousNumberInCoordinate = Integer.parseInt(coords.get(i).getY());
@@ -77,6 +77,15 @@ public class Ship {
 
 
     private boolean areCorrectLettersInCoords(List<Coordinate> coords) {
+        final String LETTERS = "ABCDEFGHIJ";
+        int indexOfFirstLetter = LETTERS.indexOf(coords.get(0).getX());
+
+        for (int i = 1; i < coords.size(); i++) {
+            if (indexOfFirstLetter + 1 != LETTERS.indexOf(coords.get(i).getX())) {
+                return false;
+            }
+            indexOfFirstLetter = LETTERS.indexOf(coords.get(i).getX());
+        }
         return true;
     }
 }
