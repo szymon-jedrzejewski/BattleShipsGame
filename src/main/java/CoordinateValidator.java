@@ -3,6 +3,10 @@ import java.util.List;
 import java.util.Set;
 
 public class CoordinateValidator {
+
+    private CoordinateValidator() {
+    }
+
     public static boolean isTheSameLetter(List<Coordinate> coords) {
         Set<String> letters = new HashSet<>();
         for (Coordinate coordinate : coords) {
