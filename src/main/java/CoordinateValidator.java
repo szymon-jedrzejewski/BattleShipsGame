@@ -48,4 +48,13 @@ public class CoordinateValidator {
         }
         return true;
     }
+
+    public static boolean areCoordsCorrect(ShipType type, List<Coordinate> coords) {
+        if (type.getShipSize() > 1) {
+            if (!CoordinateValidator.isTheSameLetter(coords) && !CoordinateValidator.isTheSameNumber(coords)) return false;
+            if (CoordinateValidator.isTheSameLetter(coords)) return CoordinateValidator.areCorrectNumbersInCoords(coords);
+            if (CoordinateValidator.isTheSameNumber(coords)) return CoordinateValidator.areCorrectLettersInCoords(coords);
+        }
+        return true;
+    }
 }

@@ -23,7 +23,7 @@ public class Ship {
     public boolean addCoordinate(Coordinate coordinate) {
         if (coords.size() < type.getShipSize()) {
             coords.add(coordinate);
-            return areCoordsCorrect(coords);
+            return CoordinateValidator.areCoordsCorrect(type, coords);
         }
         return false;
     }
@@ -34,14 +34,5 @@ public class Ship {
 
     public int getLives() {
         return lives;
-    }
-
-    private boolean areCoordsCorrect(List<Coordinate> coords) {
-        if (type.getShipSize() > 1) {
-            if (!CoordinateValidator.isTheSameLetter(coords) && !CoordinateValidator.isTheSameNumber(coords)) return false;
-            if (CoordinateValidator.isTheSameLetter(coords)) return CoordinateValidator.areCorrectNumbersInCoords(coords);
-            if (CoordinateValidator.isTheSameNumber(coords)) return CoordinateValidator.areCorrectLettersInCoords(coords);
-        }
-        return true;
     }
 }
