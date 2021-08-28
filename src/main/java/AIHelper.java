@@ -1,4 +1,6 @@
+import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class AIHelper {
     private final Random random = new Random();
@@ -12,7 +14,7 @@ public class AIHelper {
     }
 
     private String generateRandomLetter() {
-        int randomNumber = random.nextInt((10 - 1) + 1) + 1;
+        int randomNumber = random.nextInt(10);
         return String.valueOf(LETTERS.charAt(randomNumber));
     }
 
@@ -20,20 +22,59 @@ public class AIHelper {
         return random.nextBoolean();
     }
 
-    private Ship generateShip(ShipType type) {
+    public Ship generateShip(ShipType type) {
+        final char MID_LETTER = 'E';
+        final int MID_NUMBER = 5;
         Ship ship = new Ship(type);
+        String number = generateRandomNumber();
+        String letter = generateRandomLetter();
+        System.out.println("Number: " + number);
+        System.out.println("Letter: " + letter);
         if (isHorizontal()) {
-            String number = generateRandomNumber();
-            for (int i = 0; i < type.getShipSize(); i++) {
-
+            int letterIndex = LETTERS.indexOf(letter);
+            if (letter.charAt(0) > MID_LETTER) {
+                for (int i = 0; i < type.getShipSize(); i++) {
+                    String previousLetter = String.valueOf(LETTERS.charAt(letterIndex - i));
+                    System.out.println("PreviousLetter: " + previousLetter);
+                    ship.addCoordinate(new Coordinate(previousLetter, number));
+                }
+            } else {
+                for (int i = 0; i < type.getShipSize(); i++) {
+                    String nextLetter = String.valueOf(LETTERS.charAt(letterIndex + i));
+                    System.out.println("NextLetter: " + nextLetter);
+                    ship.addCoordinate(new Coordinate(nextLetter, number));
+                }
             }
-        } else {
-            String letter = generateRandomLetter();
-            for (int i = 0; i < type.getShipSize(); i++) {
 
+        } else {
+            if (Integer.valueOf(number) > MID_NUMBER) {
+                for (int i = 0; i < type.getShipSize(); i++) {
+                    String previousNumber = String.valueOf(Integer.valueOf(number) - i);
+                    System.out.println("PreviousNumber: " + previousNumber);
+                    ship.addCoordinate(new Coordinate(letter, previousNumber));
+                }
+            } else {
+                for (int i = 0; i < type.getShipSize(); i++) {
+                    String nextNumber = String.valueOf(Integer.valueOf(number) + i);
+                    System.out.println("NextNumber: " + nextNumber);
+                    ship.addCoordinate(new Coordinate(letter, nextNumber));
+                }
             }
         }
+        System.out.println(ship.toString());
+        ship.setCoords(ship.getCoords().stream().sorted(new CoordinateComparator()).collect(Collectors.toList()));
         return ship;
     }
 
+    public boolean doesShipHaveUnoccupiedCoords(List<Ship> ships, Ship ship) {
+        for (Ship shipfromList : ships) {
+            for (Coordinate coordinate : shipfromList.getCoords()) {
+                return ship
+                        .getCoords()
+                        .stream()
+                        .anyMatch(coord -> coord.getCoordinate().equals(coordinate.getCoordinate()));
+            }
+        }
+        return false;
+    }
 }

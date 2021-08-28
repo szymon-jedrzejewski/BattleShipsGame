@@ -20,6 +20,10 @@ public class Ship {
         return coords;
     }
 
+    public void setCoords(List<Coordinate> coords) {
+        this.coords = coords;
+    }
+
     public boolean addCoordinate(Coordinate coordinate) {
         if (coords.size() < type.getShipSize()) {
             coords.add(coordinate);
@@ -34,5 +38,14 @@ public class Ship {
 
     public int getLives() {
         return lives;
+    }
+
+    @Override
+    public String toString() {
+        return "Ship{" +
+                "type=" + type +
+                ", coords=" + coords.toString() +
+                ", lives=" + lives +
+                '}';
     }
 }
