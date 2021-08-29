@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.stream.Collectors;
 
 public class Ship {
 
@@ -38,6 +40,21 @@ public class Ship {
 
     public int getLives() {
         return lives;
+    }
+
+    public void sortCoords() {
+        coords = coords.stream().sorted(new CoordinateComparator()).collect(Collectors.toList());
+
+        List<Coordinate> tempCoords = new ArrayList<>(coords);
+
+        coords.forEach(coordinate -> {
+            if (coordinate.getCoordinate().contains("10")) {
+                tempCoords.remove(coordinate);
+                tempCoords.add(coordinate);
+                coords = tempCoords;
+            }
+        });
+
     }
 
     @Override

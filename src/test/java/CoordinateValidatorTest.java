@@ -87,5 +87,26 @@ public class CoordinateValidatorTest {
         assertFalse(CoordinateValidator.areCorrectNumbersInCoords(coords));
     }
 
+    @Test
+    public void shouldPassIfCoordsAreCorrect() {
+        List<Coordinate> coords = new ArrayList<>();
+        coords.add(new Coordinate("A", "10"));
+        coords.add(new Coordinate("B", "10"));
+        coords.add(new Coordinate("C", "10"));
+        coords.add(new Coordinate("D", "10"));
+        coords.add(new Coordinate("E", "10"));
+        Ship ship = new Ship(ShipType.BATTLESHIP);
+        ship.setCoords(coords);
+        assertTrue(CoordinateValidator.areCoordsCorrect(ShipType.BATTLESHIP, ship.getCoords()));
 
+        coords = new ArrayList<>();
+        coords.add(new Coordinate("J", "1"));
+        coords.add(new Coordinate("J", "2"));
+        coords.add(new Coordinate("J", "3"));
+        coords.add(new Coordinate("J", "4"));
+        coords.add(new Coordinate("J", "5"));
+        ship = new Ship(ShipType.BATTLESHIP);
+        ship.setCoords(coords);
+        assertTrue(CoordinateValidator.areCoordsCorrect(ShipType.BATTLESHIP, ship.getCoords()));
+    }
 }

@@ -32,16 +32,18 @@ public class AIHelperTest {
     }
 
     @Test
-    public void shouldPassIfShipIsCoordsOfDestroyerArOk() {
+    public void shouldPassIfShipIsCoordsOfDestroyerAreCorrect() {
         Ship ship = new AIHelper().generateShip(ShipType.DESTROYER);
-        ship.toString();
+        ship.sortCoords();
+        System.out.println(ship.getCoords());
         assertTrue(CoordinateValidator.areCoordsCorrect(ShipType.DESTROYER, ship.getCoords()));
     }
 
     @Test
-    public void shouldPassIfShipIsCoordsOfBattleShipArOk() {
+    public void shouldPassIfShipIsCoordsOfBattleShipAreCorrect() {
         Ship ship = new AIHelper().generateShip(ShipType.BATTLESHIP);
-        ship.toString();
+        ship.sortCoords();
+        System.out.println(ship.getCoords());
         assertTrue(CoordinateValidator.areCoordsCorrect(ShipType.BATTLESHIP, ship.getCoords()));
     }
 

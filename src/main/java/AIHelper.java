@@ -1,6 +1,5 @@
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 public class AIHelper {
     private final Random random = new Random();
@@ -47,22 +46,20 @@ public class AIHelper {
             }
 
         } else {
-            if (Integer.valueOf(number) > MID_NUMBER) {
+            if (Integer.parseInt(number) > MID_NUMBER) {
                 for (int i = 0; i < type.getShipSize(); i++) {
-                    String previousNumber = String.valueOf(Integer.valueOf(number) - i);
+                    String previousNumber = String.valueOf(Integer.parseInt(number) - i);
                     System.out.println("PreviousNumber: " + previousNumber);
                     ship.addCoordinate(new Coordinate(letter, previousNumber));
                 }
             } else {
                 for (int i = 0; i < type.getShipSize(); i++) {
-                    String nextNumber = String.valueOf(Integer.valueOf(number) + i);
+                    String nextNumber = String.valueOf(Integer.parseInt(number) + i);
                     System.out.println("NextNumber: " + nextNumber);
                     ship.addCoordinate(new Coordinate(letter, nextNumber));
                 }
             }
         }
-        System.out.println(ship.toString());
-        ship.setCoords(ship.getCoords().stream().sorted(new CoordinateComparator()).collect(Collectors.toList()));
         return ship;
     }
 
@@ -77,4 +74,6 @@ public class AIHelper {
         }
         return false;
     }
+
+
 }
