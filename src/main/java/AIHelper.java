@@ -1,7 +1,10 @@
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import java.util.List;
 import java.util.Random;
 
 public class AIHelper {
+    private static final Logger logger = LogManager.getLogger(AIHelper.class);
     private final Random random = new Random();
     private final int LIMIT_OF_SHIPS = 3;
     private final String LETTERS = "ABCDEFGHIJ";
@@ -27,20 +30,20 @@ public class AIHelper {
         Ship ship = new Ship(type);
         String number = generateRandomNumber();
         String letter = generateRandomLetter();
-        System.out.println("Number: " + number);
-        System.out.println("Letter: " + letter);
+        logger.debug("Number: " + number);
+        logger.debug("Letter: " + letter);
         if (isHorizontal()) {
             int letterIndex = LETTERS.indexOf(letter);
             if (letter.charAt(0) > MID_LETTER) {
                 for (int i = 0; i < type.getShipSize(); i++) {
                     String previousLetter = String.valueOf(LETTERS.charAt(letterIndex - i));
-                    System.out.println("PreviousLetter: " + previousLetter);
+                    logger.debug("PreviousLetter: " + previousLetter);
                     ship.addCoordinate(new Coordinate(previousLetter, number));
                 }
             } else {
                 for (int i = 0; i < type.getShipSize(); i++) {
                     String nextLetter = String.valueOf(LETTERS.charAt(letterIndex + i));
-                    System.out.println("NextLetter: " + nextLetter);
+                    logger.debug("NextLetter: " + nextLetter);
                     ship.addCoordinate(new Coordinate(nextLetter, number));
                 }
             }
@@ -49,13 +52,13 @@ public class AIHelper {
             if (Integer.parseInt(number) > MID_NUMBER) {
                 for (int i = 0; i < type.getShipSize(); i++) {
                     String previousNumber = String.valueOf(Integer.parseInt(number) - i);
-                    System.out.println("PreviousNumber: " + previousNumber);
+                    logger.debug("PreviousNumber: " + previousNumber);
                     ship.addCoordinate(new Coordinate(letter, previousNumber));
                 }
             } else {
                 for (int i = 0; i < type.getShipSize(); i++) {
                     String nextNumber = String.valueOf(Integer.parseInt(number) + i);
-                    System.out.println("NextNumber: " + nextNumber);
+                    logger.debug("NextNumber: " + nextNumber);
                     ship.addCoordinate(new Coordinate(letter, nextNumber));
                 }
             }
