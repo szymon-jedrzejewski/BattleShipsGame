@@ -8,8 +8,11 @@ public class Game {
     }
 
     public void startGame() {
+        Player player = new Player();
+        AIHelper computerPlayer = new AIHelper();
 
     }
+
 
 
 }
