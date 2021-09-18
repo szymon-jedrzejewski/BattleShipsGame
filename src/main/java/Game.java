@@ -9,7 +9,7 @@ public class Game {
 
     public void startGame() {
         Player player = new ConsolePlayer();
-        AIPlayer computerPlayer = new AIPlayer();
+        Player computerPlayer = new AIPlayer();
 
     }
 

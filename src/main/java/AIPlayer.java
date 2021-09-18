@@ -64,7 +64,7 @@ public class AIPlayer extends Player {
         }
 
         if (!CoordinateValidator.doesShipHaveOccupiedCoords(getShips(), ship)) {
-            ships.add(ship);
+            addShip(ship);
             return true;
         }
 
