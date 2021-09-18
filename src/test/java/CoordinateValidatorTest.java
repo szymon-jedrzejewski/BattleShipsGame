@@ -109,4 +109,54 @@ public class CoordinateValidatorTest {
         ship.setCoords(coords);
         assertTrue(CoordinateValidator.areCoordsCorrect(ShipType.BATTLESHIP, ship.getCoords()));
     }
+
+
+    @Test
+    public void shouldReturnTrueIfAnyCoordsAreTheSame() {
+        Ship ship1 = new Ship(ShipType.DESTROYER);
+        ship1.addCoordinate(new Coordinate("A", "1"));
+        ship1.addCoordinate(new Coordinate("A", "2"));
+        ship1.addCoordinate(new Coordinate("A", "3"));
+        ship1.addCoordinate(new Coordinate("A", "4"));
+        assertTrue(CoordinateValidator.doesShipHaveUnoccupiedCoords(createShips(), ship1));
+    }
+
+    @Test
+    public void shouldReturnFalseIfAnyCorrdsFromShipDidNotAppear() {
+        Ship ship1 = new Ship(ShipType.DESTROYER);
+        ship1.addCoordinate(new Coordinate("F", "1"));
+        ship1.addCoordinate(new Coordinate("G", "2"));
+        ship1.addCoordinate(new Coordinate("H", "3"));
+        ship1.addCoordinate(new Coordinate("I", "4"));
+        assertFalse(CoordinateValidator.doesShipHaveUnoccupiedCoords(createShips(), ship1));
+    }
+
+    private List<Ship> createShips() {
+        List<Ship> ships = new ArrayList<>();
+
+        Ship ship1 = new Ship(ShipType.DESTROYER);
+        ship1.addCoordinate(new Coordinate("A", "1"));
+        ship1.addCoordinate(new Coordinate("B", "1"));
+        ship1.addCoordinate(new Coordinate("C", "1"));
+        ship1.addCoordinate(new Coordinate("D", "1"));
+
+        Ship ship2 = new Ship(ShipType.DESTROYER);
+        ship2.addCoordinate(new Coordinate("A", "2"));
+        ship2.addCoordinate(new Coordinate("B", "2"));
+        ship2.addCoordinate(new Coordinate("C", "2"));
+        ship2.addCoordinate(new Coordinate("D", "2"));
+
+        Ship ship3 = new Ship(ShipType.BATTLESHIP);
+        ship3.addCoordinate(new Coordinate("A", "3"));
+        ship3.addCoordinate(new Coordinate("B", "3"));
+        ship3.addCoordinate(new Coordinate("C", "3"));
+        ship3.addCoordinate(new Coordinate("D", "3"));
+        ship3.addCoordinate(new Coordinate("E", "3"));
+
+        ships.add(ship1);
+        ships.add(ship2);
+        ships.add(ship3);
+
+        return ships;
+    }
 }

@@ -1,12 +1,11 @@
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import java.util.List;
+
 import java.util.Random;
 
 public class AIHelper {
     private static final Logger logger = LogManager.getLogger(AIHelper.class);
     private final Random random = new Random();
-    private final int LIMIT_OF_SHIPS = 3;
     private final String LETTERS = "ABCDEFGHIJ";
 
 
@@ -65,18 +64,4 @@ public class AIHelper {
         }
         return ship;
     }
-
-    public boolean doesShipHaveUnoccupiedCoords(List<Ship> ships, Ship ship) {
-        for (Ship shipfromList : ships) {
-            for (Coordinate coordinate : shipfromList.getCoords()) {
-                return ship
-                        .getCoords()
-                        .stream()
-                        .anyMatch(coord -> coord.getCoordinate().equals(coordinate.getCoordinate()));
-            }
-        }
-        return false;
-    }
-
-
 }

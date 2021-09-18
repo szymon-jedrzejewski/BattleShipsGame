@@ -57,4 +57,16 @@ public class CoordinateValidator {
         }
         return true;
     }
+
+    public static boolean doesShipHaveUnoccupiedCoords(List<Ship> ships, Ship ship) {
+        for (Ship shipFromList : ships) {
+            for (Coordinate coordinate : shipFromList.getCoords()) {
+                return ship
+                        .getCoords()
+                        .stream()
+                        .anyMatch(coord -> coord.getCoordinate().equals(coordinate.getCoordinate()));
+            }
+        }
+        return false;
+    }
 }
