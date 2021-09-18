@@ -3,8 +3,8 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Random;
 
-public class AIHelper {
-    private static final Logger logger = LogManager.getLogger(AIHelper.class);
+public class AIPlayer extends Player {
+    private static final Logger logger = LogManager.getLogger(AIPlayer.class);
     private final Random random = new Random();
     private final String LETTERS = "ABCDEFGHIJ";
 
@@ -23,7 +23,7 @@ public class AIHelper {
         return random.nextBoolean();
     }
 
-    public Ship generateShip(ShipType type) {
+    boolean createShip(ShipType type) {
         final char MID_LETTER = 'E';
         final int MID_NUMBER = 5;
         Ship ship = new Ship(type);
@@ -62,6 +62,12 @@ public class AIHelper {
                 }
             }
         }
-        return ship;
+
+        if (!CoordinateValidator.doesShipHaveOccupiedCoords(getShips(), ship)) {
+            ships.add(ship);
+            return true;
+        }
+
+        return false;
     }
 }

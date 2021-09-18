@@ -58,7 +58,7 @@ public class CoordinateValidator {
         return true;
     }
 
-    public static boolean doesShipHaveUnoccupiedCoords(List<Ship> ships, Ship ship) {
+    public static boolean doesShipHaveOccupiedCoords(List<Ship> ships, Ship ship) {
         for (Ship shipFromList : ships) {
             for (Coordinate coordinate : shipFromList.getCoords()) {
                 return ship

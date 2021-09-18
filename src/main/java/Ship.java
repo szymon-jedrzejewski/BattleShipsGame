@@ -26,11 +26,8 @@ public class Ship {
     }
 
     public boolean addCoordinate(Coordinate coordinate) {
-        if (coords.size() < type.getShipSize()) {
-            coords.add(coordinate);
-            return CoordinateValidator.areCoordsCorrect(type, coords);
-        }
-        return false;
+        coords.add(coordinate);
+        return CoordinateValidator.areCoordsCorrect(type, coords);
     }
 
     public void updateLives(int lives) {

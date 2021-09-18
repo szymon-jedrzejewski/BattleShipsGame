@@ -118,17 +118,17 @@ public class CoordinateValidatorTest {
         ship1.addCoordinate(new Coordinate("A", "2"));
         ship1.addCoordinate(new Coordinate("A", "3"));
         ship1.addCoordinate(new Coordinate("A", "4"));
-        assertTrue(CoordinateValidator.doesShipHaveUnoccupiedCoords(createShips(), ship1));
+        assertTrue(CoordinateValidator.doesShipHaveOccupiedCoords(createShips(), ship1));
     }
 
     @Test
-    public void shouldReturnFalseIfAnyCorrdsFromShipDidNotAppear() {
+    public void shouldReturnFalseIfAnyCoordsFromShipDidNotAppear() {
         Ship ship1 = new Ship(ShipType.DESTROYER);
         ship1.addCoordinate(new Coordinate("F", "1"));
         ship1.addCoordinate(new Coordinate("G", "2"));
         ship1.addCoordinate(new Coordinate("H", "3"));
         ship1.addCoordinate(new Coordinate("I", "4"));
-        assertFalse(CoordinateValidator.doesShipHaveUnoccupiedCoords(createShips(), ship1));
+        assertFalse(CoordinateValidator.doesShipHaveOccupiedCoords(createShips(), ship1));
     }
 
     private List<Ship> createShips() {
@@ -152,6 +152,13 @@ public class CoordinateValidatorTest {
         ship3.addCoordinate(new Coordinate("C", "3"));
         ship3.addCoordinate(new Coordinate("D", "3"));
         ship3.addCoordinate(new Coordinate("E", "3"));
+
+        Ship ship4 = new Ship(ShipType.BATTLESHIP);
+        ship4.addCoordinate(new Coordinate("A", "1"));
+        ship4.addCoordinate(new Coordinate("A", "2"));
+        ship4.addCoordinate(new Coordinate("A", "3"));
+        ship4.addCoordinate(new Coordinate("A", "4"));
+        ship4.addCoordinate(new Coordinate("A", "5"));
 
         ships.add(ship1);
         ships.add(ship2);
