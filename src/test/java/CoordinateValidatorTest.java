@@ -131,6 +131,18 @@ public class CoordinateValidatorTest {
         assertFalse(CoordinateValidator.doesShipHaveOccupiedCoords(createShips(), ship1));
     }
 
+    @Test
+    public void shouldReturnTrueIfTrueIfCoordinateIsOccupied() {
+        Coordinate coordinate = new Coordinate("A", "1");
+        assertTrue(CoordinateValidator.isCoordinateOccupied(createShips(), coordinate));
+    }
+
+    @Test
+    public void shouldReturnFalseIfTrueIfCoordinateIsNotOccupied() {
+        Coordinate coordinate = new Coordinate("B", "10");
+        assertFalse(CoordinateValidator.isCoordinateOccupied(createShips(), coordinate));
+    }
+
     private List<Ship> createShips() {
         List<Ship> ships = new ArrayList<>();
 

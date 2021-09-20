@@ -69,4 +69,14 @@ public class CoordinateValidator {
         }
         return false;
     }
+
+    public static boolean isCoordinateOccupied(List<Ship> ships, Coordinate coordinate) {
+        for (Ship ship : ships) {
+            return ship
+                    .getCoords()
+                    .stream()
+                    .anyMatch(coord -> coord.getCoordinate().equals(coordinate.getCoordinate()));
+        }
+        return false;
+    }
 }
