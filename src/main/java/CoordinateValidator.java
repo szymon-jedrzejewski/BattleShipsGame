@@ -51,9 +51,12 @@ public class CoordinateValidator {
 
     public static boolean areCoordsCorrect(ShipType type, List<Coordinate> coords) {
         if (type.getShipSize() > 1) {
-            if (!CoordinateValidator.isTheSameLetter(coords) && !CoordinateValidator.isTheSameNumber(coords)) return false;
-            if (CoordinateValidator.isTheSameLetter(coords)) return CoordinateValidator.areCorrectNumbersInCoords(coords);
-            if (CoordinateValidator.isTheSameNumber(coords)) return CoordinateValidator.areCorrectLettersInCoords(coords);
+            if (!CoordinateValidator.isTheSameLetter(coords) && !CoordinateValidator.isTheSameNumber(coords))
+                return false;
+            if (CoordinateValidator.isTheSameLetter(coords))
+                return CoordinateValidator.areCorrectNumbersInCoords(coords);
+            if (CoordinateValidator.isTheSameNumber(coords))
+                return CoordinateValidator.areCorrectLettersInCoords(coords);
         }
         return true;
     }
@@ -78,5 +81,14 @@ public class CoordinateValidator {
                     .anyMatch(coord -> coord.getCoordinate().equals(coordinate.getCoordinate()));
         }
         return false;
+    }
+
+    public static boolean isLetterOutOfRange(String letter) {
+        final String LETTERS = "ABCDEFGHIJ";
+        return LETTERS.contains(letter);
+    }
+
+    public static boolean isNumberOutOfRange(String number) {
+        return Integer.parseInt(number) >= 1 || Integer.parseInt(number) <= 10;
     }
 }

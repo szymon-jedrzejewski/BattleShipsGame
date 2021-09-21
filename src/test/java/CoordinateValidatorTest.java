@@ -143,6 +143,20 @@ public class CoordinateValidatorTest {
         assertFalse(CoordinateValidator.isCoordinateOccupied(createShips(), coordinate));
     }
 
+    @Test
+    public void shouldPassIdNumberIsOutRange() {
+        assertTrue(CoordinateValidator.isNumberOutOfRange("0"));
+        assertTrue(CoordinateValidator.isNumberOutOfRange("11"));
+        assertTrue(CoordinateValidator.isNumberOutOfRange("12"));
+    }
+
+    @Test
+    public void shouldPassIdNumberIsInRange() {
+        assertTrue(CoordinateValidator.isNumberOutOfRange("1"));
+        assertTrue(CoordinateValidator.isNumberOutOfRange("5"));
+        assertTrue(CoordinateValidator.isNumberOutOfRange("10"));
+    }
+
     private List<Ship> createShips() {
         List<Ship> ships = new ArrayList<>();
 
