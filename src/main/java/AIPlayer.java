@@ -23,7 +23,7 @@ public class AIPlayer extends Player {
         return random.nextBoolean();
     }
 
-    boolean createShip(ShipType type) {
+    public void createShip(ShipType type) {
         final char MID_LETTER = 'E';
         final int MID_NUMBER = 5;
         Ship ship = new Ship(type);
@@ -65,9 +65,6 @@ public class AIPlayer extends Player {
 
         if (!CoordinateValidator.doesShipHaveOccupiedCoords(getShips(), ship)) {
             addShip(ship);
-            return true;
         }
-
-        return false;
     }
 }
