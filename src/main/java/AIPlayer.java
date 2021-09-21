@@ -31,40 +31,43 @@ public class AIPlayer extends Player {
         String letter = generateRandomLetter();
         logger.debug("Number: " + number);
         logger.debug("Letter: " + letter);
-        if (isHorizontal()) {
-            int letterIndex = LETTERS.indexOf(letter);
-            if (letter.charAt(0) > MID_LETTER) {
-                for (int i = 0; i < type.getShipSize(); i++) {
-                    String previousLetter = String.valueOf(LETTERS.charAt(letterIndex - i));
-                    logger.debug("PreviousLetter: " + previousLetter);
-                    ship.addCoordinate(new Coordinate(previousLetter, number));
+        while (true) {
+            if (isHorizontal()) {
+                int letterIndex = LETTERS.indexOf(letter);
+                if (letter.charAt(0) > MID_LETTER) {
+                    for (int i = 0; i < type.getShipSize(); i++) {
+                        String previousLetter = String.valueOf(LETTERS.charAt(letterIndex - i));
+                        logger.debug("PreviousLetter: " + previousLetter);
+                        ship.addCoordinate(new Coordinate(previousLetter, number));
+                    }
+                } else {
+                    for (int i = 0; i < type.getShipSize(); i++) {
+                        String nextLetter = String.valueOf(LETTERS.charAt(letterIndex + i));
+                        logger.debug("NextLetter: " + nextLetter);
+                        ship.addCoordinate(new Coordinate(nextLetter, number));
+                    }
                 }
+
             } else {
-                for (int i = 0; i < type.getShipSize(); i++) {
-                    String nextLetter = String.valueOf(LETTERS.charAt(letterIndex + i));
-                    logger.debug("NextLetter: " + nextLetter);
-                    ship.addCoordinate(new Coordinate(nextLetter, number));
+                if (Integer.parseInt(number) > MID_NUMBER) {
+                    for (int i = 0; i < type.getShipSize(); i++) {
+                        String previousNumber = String.valueOf(Integer.parseInt(number) - i);
+                        logger.debug("PreviousNumber: " + previousNumber);
+                        ship.addCoordinate(new Coordinate(letter, previousNumber));
+                    }
+                } else {
+                    for (int i = 0; i < type.getShipSize(); i++) {
+                        String nextNumber = String.valueOf(Integer.parseInt(number) + i);
+                        logger.debug("NextNumber: " + nextNumber);
+                        ship.addCoordinate(new Coordinate(letter, nextNumber));
+                    }
                 }
             }
 
-        } else {
-            if (Integer.parseInt(number) > MID_NUMBER) {
-                for (int i = 0; i < type.getShipSize(); i++) {
-                    String previousNumber = String.valueOf(Integer.parseInt(number) - i);
-                    logger.debug("PreviousNumber: " + previousNumber);
-                    ship.addCoordinate(new Coordinate(letter, previousNumber));
-                }
-            } else {
-                for (int i = 0; i < type.getShipSize(); i++) {
-                    String nextNumber = String.valueOf(Integer.parseInt(number) + i);
-                    logger.debug("NextNumber: " + nextNumber);
-                    ship.addCoordinate(new Coordinate(letter, nextNumber));
-                }
+            if (!CoordinateValidator.doesShipHaveOccupiedCoords(getShips(), ship)) {
+                addShip(ship);
+                break;
             }
-        }
-
-        if (!CoordinateValidator.doesShipHaveOccupiedCoords(getShips(), ship)) {
-            addShip(ship);
         }
     }
 }
