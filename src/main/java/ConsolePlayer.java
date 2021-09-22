@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class ConsolePlayer extends Player{
 
-    public void createShip(ShipType type) {
+    public void initializeShip(ShipType type) {
         Scanner sc = new Scanner(System.in);
         Ship ship = new Ship(type);
         for (int i = 0; i < type.getShipSize(); i++) {

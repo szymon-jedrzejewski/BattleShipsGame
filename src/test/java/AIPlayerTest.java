@@ -6,7 +6,7 @@ public class AIPlayerTest {
     @Test
     public void shouldPassIfShipIsCoordsOfDestroyerAreCorrect() {
         Player player = new AIPlayer();
-        player.createShip(ShipType.DESTROYER);
+        player.initializeShip(ShipType.DESTROYER);
         Ship ship = player.getShips().get(0);
         ship.sortCoords();
         System.out.println(ship.getCoords());
@@ -16,7 +16,7 @@ public class AIPlayerTest {
     @Test
     public void shouldPassIfShipIsCoordsOfBattleShipAreCorrect() {
         Player player = new AIPlayer();
-        player.createShip(ShipType.BATTLESHIP);
+        player.initializeShip(ShipType.BATTLESHIP);
         Ship ship = player.getShips().get(0);
         ship.sortCoords();
         System.out.println(ship.getCoords());
@@ -27,7 +27,7 @@ public class AIPlayerTest {
     public void shouldPassIfShipGeneratesShipThatDoesNotExist() {
         Player player = new AIPlayer();
         player.addShip(getShip());
-        player.createShip(ShipType.BATTLESHIP);
+        player.initializeShip(ShipType.BATTLESHIP);
         Ship ship = player.getShips().get(0);
         ship.sortCoords();
         System.out.println(ship.getCoords());

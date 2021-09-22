@@ -23,7 +23,7 @@ public class AIPlayer extends Player {
         return random.nextBoolean();
     }
 
-    public void createShip(ShipType type) {
+    public void initializeShip(ShipType type) {
         final char MID_LETTER = 'E';
         final int MID_NUMBER = 5;
         Ship ship = new Ship(type);

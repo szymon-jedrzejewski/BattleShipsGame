@@ -4,7 +4,7 @@ import java.util.List;
 public abstract class Player {
     private List<Ship> ships = new ArrayList<>();
 
-    public abstract void createShip(ShipType type);
+    public abstract void initializeShip(ShipType type);
 
     protected List<Ship> getShips() {
         return ships;
