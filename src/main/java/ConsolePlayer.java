@@ -30,8 +30,11 @@ public class ConsolePlayer extends Player{
                 Coordinate coordinate = new Coordinate(letter, number);
                 List<Coordinate> tempCoords = new ArrayList<>(ship.getCoords());
                 tempCoords.add(coordinate);
+                Ship tempShip = new Ship(type);
+                tempShip.setCoords(tempCoords);
+                tempShip.sortCoords();
 
-                if (CoordinateValidator.areCoordsCorrect(type, tempCoords)) {
+                if (CoordinateValidator.areCoordsCorrect(type, tempShip.getCoords())) {
                     return coordinate;
                 }
 
