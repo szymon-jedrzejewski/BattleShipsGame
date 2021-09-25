@@ -1,6 +1,4 @@
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class CoordinateValidator {
 
@@ -83,12 +81,13 @@ public class CoordinateValidator {
         return false;
     }
 
-    public static boolean isLetterOutOfRange(String letter) {
-        final String LETTERS = "ABCDEFGHIJ";
-        return LETTERS.contains(letter);
+    public static boolean isLetterValid(String letter) {
+        List<String> letters = new ArrayList<>(Arrays.asList("A", "B", "C", "D", "E", "F", "G", "H", "I", "J"));
+        return letters.contains(letter);
     }
 
-    public static boolean isNumberOutOfRange(String number) {
-        return Integer.parseInt(number) >= 1 || Integer.parseInt(number) <= 10;
+    public static boolean isNumberValid(String number) {
+        List<String> numbers = new ArrayList<>(Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9", "10"));
+        return numbers.contains(number);
     }
 }

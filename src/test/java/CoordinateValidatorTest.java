@@ -144,17 +144,32 @@ public class CoordinateValidatorTest {
     }
 
     @Test
-    public void shouldPassIdNumberIsOutRange() {
-        assertTrue(CoordinateValidator.isNumberOutOfRange("0"));
-        assertTrue(CoordinateValidator.isNumberOutOfRange("11"));
-        assertTrue(CoordinateValidator.isNumberOutOfRange("12"));
+    public void shouldPassIfNumberInvalid() {
+        assertFalse(CoordinateValidator.isNumberValid("0"));
+        assertFalse(CoordinateValidator.isNumberValid("11"));
+        assertFalse(CoordinateValidator.isNumberValid("12"));
     }
 
     @Test
-    public void shouldPassIdNumberIsInRange() {
-        assertTrue(CoordinateValidator.isNumberOutOfRange("1"));
-        assertTrue(CoordinateValidator.isNumberOutOfRange("5"));
-        assertTrue(CoordinateValidator.isNumberOutOfRange("10"));
+    public void shouldPassIfNumberIsValid() {
+        assertTrue(CoordinateValidator.isNumberValid("1"));
+        assertTrue(CoordinateValidator.isNumberValid("5"));
+        assertTrue(CoordinateValidator.isNumberValid("10"));
+    }
+
+    @Test
+    public void shouldPassIfLetterIsValid() {
+        assertTrue(CoordinateValidator.isLetterValid("A"));
+        assertTrue(CoordinateValidator.isLetterValid("B"));
+        assertTrue(CoordinateValidator.isLetterValid("J"));
+    }
+
+    @Test
+    public void shouldPassIfLetterIsInvalid() {
+        assertFalse(CoordinateValidator.isLetterValid("ABCDE"));
+        assertFalse(CoordinateValidator.isLetterValid("*"));
+        assertFalse(CoordinateValidator.isLetterValid("K"));
+        assertFalse(CoordinateValidator.isLetterValid("L"));
     }
 
     private List<Ship> createShips() {
