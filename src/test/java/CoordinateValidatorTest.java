@@ -88,10 +88,38 @@ public class CoordinateValidatorTest {
     }
 
     @Test
+    public void test() {
+        List<Coordinate> coords = new ArrayList<>();
+        coords.add(new Coordinate("A", "1"));
+        coords.add(new Coordinate("A", "10"));
+        assertFalse(CoordinateValidator.areCorrectNumbersInCoords(coords));
+    }
+
+    @Test
     public void shouldPassIfOnlyOneCoordinate() {
+        Ship ship = new Ship(ShipType.BATTLESHIP);
         List<Coordinate> coords = new ArrayList<>();
         coords.add(new Coordinate("B", "1"));
-        assertTrue(CoordinateValidator.areCorrectNumbersInCoords(coords));
+        ship.setCoords(coords);
+        assertTrue(CoordinateValidator.areCoordsCorrect(ShipType.BATTLESHIP, ship.getCoords()));
+    }
+
+    @Test
+    public void shouldPassIfTwoCoordsAreIncorrect() {
+        Ship ship = new Ship(ShipType.BATTLESHIP);
+        List<Coordinate> coords = new ArrayList<>();
+        coords.add(new Coordinate("A", "1"));
+        coords.add(new Coordinate("A", "10"));
+        ship.setCoords(coords);
+        assertFalse(CoordinateValidator.areCoordsCorrect(ShipType.BATTLESHIP, ship.getCoords()));
+    }
+
+    @Test
+    public void shouldPassIfIsEmpty() {
+        Ship ship = new Ship(ShipType.BATTLESHIP);
+        List<Coordinate> coords = new ArrayList<>();
+        ship.setCoords(coords);
+        assertTrue(CoordinateValidator.areCoordsCorrect(ShipType.BATTLESHIP, ship.getCoords()));
     }
 
     @Test

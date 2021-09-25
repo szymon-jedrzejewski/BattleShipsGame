@@ -48,6 +48,10 @@ public class CoordinateValidator {
     }
 
     public static boolean areCoordsCorrect(ShipType type, List<Coordinate> coords) {
+        if (coords.isEmpty()) {
+            return true;
+        }
+
         if (type.getShipSize() > 1) {
             if (!CoordinateValidator.isTheSameLetter(coords) && !CoordinateValidator.isTheSameNumber(coords))
                 return false;
