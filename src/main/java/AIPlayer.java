@@ -70,4 +70,9 @@ public class AIPlayer extends Player {
             }
         }
     }
+
+    @Override
+    public String shot() {
+        return null;
+    }
 }

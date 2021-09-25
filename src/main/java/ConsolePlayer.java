@@ -15,6 +15,11 @@ public class ConsolePlayer extends Player{
         }
     }
 
+    @Override
+    public String shot() {
+        return playerInput("Enter coordinate where you think enemy ship is: ");
+    }
+
     private String playerInput(String message) {
         System.out.print(message);
         return new Scanner(System.in).next().toUpperCase();
