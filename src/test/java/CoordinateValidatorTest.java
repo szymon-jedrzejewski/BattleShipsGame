@@ -88,6 +88,13 @@ public class CoordinateValidatorTest {
     }
 
     @Test
+    public void shouldPassIfOnlyOneCoordinate() {
+        List<Coordinate> coords = new ArrayList<>();
+        coords.add(new Coordinate("B", "1"));
+        assertTrue(CoordinateValidator.areCorrectNumbersInCoords(coords));
+    }
+
+    @Test
     public void shouldPassIfCoordsAreCorrect() {
         List<Coordinate> coords = new ArrayList<>();
         coords.add(new Coordinate("A", "10"));

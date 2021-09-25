@@ -25,9 +25,8 @@ public class Ship {
         this.coords = coords;
     }
 
-    public boolean addCoordinate(Coordinate coordinate) {
+    public void addCoordinate(Coordinate coordinate) {
         coords.add(coordinate);
-        return CoordinateValidator.areCoordsCorrect(type, coords);
     }
 
     public void updateLives(int lives) {
