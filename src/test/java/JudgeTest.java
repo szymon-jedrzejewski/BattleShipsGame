@@ -52,7 +52,23 @@ public class JudgeTest {
         List<Ship> ships = sinkAllShips(createShips());
         assertTrue(judge.areAllShipsSunk(ships));
     }
-    
+
+    @Test
+    public void shouldPassIfAnyShipWasHit() {
+        Judge judge = new Judge();
+        List<Ship> ships = createShips();
+        Coordinate coordinate = new Coordinate("A", "1");
+        assertTrue(judge.isAnyShipHit(ships, coordinate));
+    }
+
+    @Test
+    public void shouldPassIfAnyShipWasNotHit() {
+        Judge judge = new Judge();
+        List<Ship> ships = createShips();
+        Coordinate coordinate = new Coordinate("H", "1");
+        assertFalse(judge.isAnyShipHit(ships, coordinate));
+    }
+
     private List<Ship> sinkAllShips(List<Ship> ships) {
         
         for (Ship ship : ships) {

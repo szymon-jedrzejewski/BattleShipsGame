@@ -6,7 +6,6 @@ public class Judge {
         List<Coordinate> coords = ship.getCoords();
         for (Coordinate coordinate : coords) {
             if (coordinate.getCoordinate().equals(playerShot.getCoordinate())) {
-
                 return true;
             }
         }
@@ -31,5 +30,15 @@ public class Judge {
             }
         }
         return countSinkShips == ships.size();
+    }
+
+    public boolean isAnyShipHit(List<Ship> ships, Coordinate coordinate) {
+        for (Ship ship : ships) {
+            if (wasShipHit(ship, coordinate)) {
+                subtractLife(ship);
+                return true;
+            }
+        }
+        return false;
     }
 }
