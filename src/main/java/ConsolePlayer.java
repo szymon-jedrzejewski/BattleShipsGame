@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class ConsolePlayer extends Player{
+public class ConsolePlayer extends Player {
 
     public void initializeShip(ShipType type) {
         Ship ship = new Ship(type);
@@ -16,8 +16,19 @@ public class ConsolePlayer extends Player{
     }
 
     @Override
-    public String shot() {
-        return playerInput("Enter coordinate where you think enemy ship is: ");
+    public Coordinate shot() {
+        while (true) {
+            String letter = playerInput("Please enter letter from A to J: ");
+            String number = playerInput("Please enter number from 1 to 10: ");
+            if (CoordinateValidator.isLetterValid(letter) && CoordinateValidator.isNumberValid(number)) {
+                Coordinate coordinate = new Coordinate(letter, number);
+                if (CoordinateValidator.wasCoordinateUsed(getShots(), coordinate)) {
+                    addShot(coordinate);
+                    return coordinate;
+                }
+                System.out.println("\nPlease enter coordinate once again!\n");
+            }
+        }
     }
 
     private String playerInput(String message) {

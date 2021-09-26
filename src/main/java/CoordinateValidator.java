@@ -33,7 +33,7 @@ public class CoordinateValidator {
         return true;
     }
 
-
+    //TODO make it configurable in file
     public static boolean areCorrectLettersInCoords(List<Coordinate> coords) {
         final String LETTERS = "ABCDEFGHIJ";
         int indexOfFirstLetter = LETTERS.indexOf(coords.get(0).getX());
@@ -85,13 +85,21 @@ public class CoordinateValidator {
         return false;
     }
 
+    //TODO make it configurable in file
     public static boolean isLetterValid(String letter) {
         List<String> letters = new ArrayList<>(Arrays.asList("A", "B", "C", "D", "E", "F", "G", "H", "I", "J"));
         return letters.contains(letter);
     }
 
+    //TODO make it configurable in file
     public static boolean isNumberValid(String number) {
         List<String> numbers = new ArrayList<>(Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9", "10"));
         return numbers.contains(number);
+    }
+
+    public static boolean wasCoordinateUsed(List<Coordinate> coords, Coordinate coordinate) {
+        return coords
+                .stream()
+                .noneMatch(coord -> coord.getCoordinate().equals(coordinate.getCoordinate()));
     }
 }

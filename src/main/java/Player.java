@@ -15,7 +15,7 @@ public abstract class Player {
         ships.add(ship);
     }
 
-    public abstract String shot();
+    public abstract Coordinate shot();
 
     protected void addShot(Coordinate coordinate) {
         shots.add(coordinate);

@@ -6,6 +6,7 @@ import java.util.Random;
 public class AIPlayer extends Player {
     private static final Logger logger = LogManager.getLogger(AIPlayer.class);
     private final Random random = new Random();
+    //TODO make it configurable in file
     private final String LETTERS = "ABCDEFGHIJ";
 
 
@@ -24,7 +25,9 @@ public class AIPlayer extends Player {
     }
 
     public void initializeShip(ShipType type) {
+        //TODO make it configurable through file values
         final char MID_LETTER = 'E';
+        //TODO make it configurable through file values
         final int MID_NUMBER = 5;
         Ship ship = new Ship(type);
         String number = generateRandomNumber();
@@ -72,7 +75,13 @@ public class AIPlayer extends Player {
     }
 
     @Override
-    public String shot() {
-        return null;
+    public Coordinate shot() {
+        while (true) {
+            Coordinate coordinate = new Coordinate(generateRandomLetter(), generateRandomNumber());
+            if (CoordinateValidator.wasCoordinateUsed(getShots(), coordinate)) {
+                addShot(coordinate);
+                return coordinate;
+            }
+        }
     }
 }
