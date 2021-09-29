@@ -3,6 +3,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ConsolePlayer extends Player {
+    private View view;
+
+    public ConsolePlayer(View view) {
+        this.view = view;
+    }
 
     public void initializeShip(ShipType type) {
         Ship ship = new Ship(type);
@@ -11,35 +16,36 @@ public class ConsolePlayer extends Player {
         }
 
         if (!CoordinateValidator.doesShipHaveOccupiedCoords(getShips(), ship)) {
-            addShip(ship);
+            this.addShip(ship);
         }
     }
 
     @Override
     public Coordinate shot() {
         while (true) {
-            String letter = playerInput("Please enter letter from A to J: ");
-            String number = playerInput("Please enter number from 1 to 10: ");
+            String letter = playerInput("\nPlease enter letter from A to J: ");
+            String number = playerInput("\nPlease enter number from 1 to 10: ");
             if (CoordinateValidator.isLetterValid(letter) && CoordinateValidator.isNumberValid(number)) {
                 Coordinate coordinate = new Coordinate(letter, number);
                 if (CoordinateValidator.wasCoordinateUsed(getShots(), coordinate)) {
-                    addShot(coordinate);
+                    this.addShot(coordinate);
+                    view.displayMessage("\nPlayer shot: " + coordinate.toString());
                     return coordinate;
                 }
-                System.out.println("\nPlease enter coordinate once again!\n");
+                view.displayMessage("\nPlease enter coordinate once again!\n");
             }
         }
     }
 
     private String playerInput(String message) {
-        System.out.print(message);
+        view.displayMessage(message);
         return new Scanner(System.in).next().toUpperCase();
     }
 
     private Coordinate initializeCoordinate(ShipType type, Ship ship) {
         while (true) {
-            String letter = playerInput("Please enter letter from A to J: ");
-            String number = playerInput("Please enter number from 1 to 10: ");
+            String letter = playerInput("\nPlease enter letter from A to J: ");
+            String number = playerInput("\nPlease enter number from 1 to 10: ");
 
             if (CoordinateValidator.isLetterValid(letter) && CoordinateValidator.isNumberValid(number)) {
 
@@ -51,11 +57,12 @@ public class ConsolePlayer extends Player {
                 tempShip.sortCoords();
 
                 if (CoordinateValidator.areCoordsCorrect(type, tempShip.getCoords())) {
+                    view.displayMessage("\nCoordinate created!\n");
                     return coordinate;
                 }
 
             }
-            System.out.println("\nPlease enter coordinate once again!\n");
+            view.displayMessage("\nPlease enter coordinate once again!\n");
         }
     }
 
